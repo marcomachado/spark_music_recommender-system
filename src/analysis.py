@@ -6,7 +6,14 @@ from pyspark.ml.recommendation import ALS
 # Cria uma sessão Spark
 spark = SparkSession.builder \
     .appName("Music_Recommender_System") \
+    .master("local[*]") \
+    .config("spark.executor.memory", "70g") \
+    .config("spark.driver.memory", "50g") \
+    .config("spark.memory.offHeap.enabled",True) \
+    .config("spark.memory.offHeap.size","16g")\
     .getOrCreate()
+
+spark.sparkContext.setLogLevel('WARN')
 
 spark.sparkContext.setLogLevel('WARN')
 
