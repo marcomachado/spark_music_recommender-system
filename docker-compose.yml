@@ -1,13 +1,9 @@
-version: '3.8'
-
 services:
-  spark:
-    image: bitnami/spark:latest
+  spark-container:
+    build:
+      context: .
+      dockerfile: Dockerfile
     volumes:
-      - ./src:/app
-      - ./data:/app/data
-      - ./requirements.txt:/app/requirements.txt
-    working_dir: /app
-    #command: ["spark-submit", "analysis.py"]
-    environment:
-      - SPARK_MODE=master
+      - .:/app
+    stdin_open: true
+    tty: true
